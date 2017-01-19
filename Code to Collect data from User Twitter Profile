@@ -12,7 +12,7 @@ public_tweets = api.user_timeline(screen_name="@Any_UserName",count = 200) # que
 
 get_user = api.get_user(screen_name="@Any_UserName")
 
-file = open('usertweets-sachin_rt_1.txt','w')
+file = open('usertweets-@Any_UserName_1.txt','w')
 
 i=0
 
