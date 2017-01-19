@@ -1,0 +1,32 @@
+import unicodedata
+import json
+import tweepy
+
+auth = tweepy.OAuthHandler('1DpXmbdT3n1gTMekQ0NzXXXXX', 'ihfeWTdSV3YNjqymWwciuqS4bcwT6JdSVWG5wwS3dabKyXXXXX')
+auth.set_access_token('4390387221-sPVsyBQhXkstTGyZKMnSJjUufMOTDIZ6qlXXXXX', 'PsPlJFEPqOuQynQrlh1DZigwLwn45uFi9ddNmzSDXXXXX')
+
+api = tweepy.API(auth)
+
+public_tweets = api.user_timeline(screen_name="@USER_Profile_Name",count = 200) # query for collecting tweets based on screen_name of the user
+#for each user enter the Twitter handle to collect the tweets
+file = open('usertweets-@USER_Profile_Name_2.txt','w')
+
+i=0
+
+file.write(str(public_tweets[0].user.screen_name))
+file.write("\n")
+file.write("\n")
+
+for tweet in public_tweets:
+	i+=1
+	print "#", 
+	print i, 
+	print " : "
+	tweet = unicodedata.normalize('NFKD', tweet.text).encode('utf-8','ignore')
+	print tweet
+	file.write("''"+",")
+	file.write("'"+str(tweet)+"'")
+	file.write("\n")
+		
+file.close()
+
