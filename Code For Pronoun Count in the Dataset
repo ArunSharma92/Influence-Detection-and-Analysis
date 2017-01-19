@@ -1,0 +1,24 @@
+import unicodedata
+import json
+import tweepy
+import os
+
+files = os.listdir("Pronoun Count")
+
+path = os.getcwd()
+i = 0
+
+p = open("no_of_pronouns.txt","w")
+
+for f in files:
+	count = 0
+	file = path + "\Pronoun Count\\" + f
+	for line in open(file).readlines():
+		line = line.strip()
+		if(line == "<POS>PRP</POS>"):
+			count = count + 1
+		if(line == "<POS>PRP$</POS>"):
+			count = count + 1
+		
+	print f,count
+	p.write("Number of pronouns in "+f+": "+str(count)+"\n")
