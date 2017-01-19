@@ -2,8 +2,8 @@ import unicodedata
 import json
 import tweepy
 
-auth = tweepy.OAuthHandler('1DpXmbdT3n1gTMekQ0NzBUWhJ', 'ihfeWTdSV3YNjqymWwciuqS4bcwT6JdSVWG5wwS3dabKydnS6m')
-auth.set_access_token('4390387221-sPVsyBQhXkstTGyZKMnSJjUufMOTDIZ6qlmtV3Q', 'PsPlJFEPqOuQynQrlh1DZigwLwn45uFi9ddNmzSD8ih4C')
+auth = tweepy.OAuthHandler('1DpXmbdT3n1gTMekQ0NzXXXXX', 'ihfeWTdSV3YNjqymWwciuqS4bcwT6JdSVWG5wwS3dabKyXXXXX')
+auth.set_access_token('4390387221-sPVsyBQhXkstTGyZKMnSJjUufMOTDIZ6qlXXXXX', 'PsPlJFEPqOuQynQrlh1DZigwLwn45uFi9ddNmzSDXXXXX')
 
 api = tweepy.API(auth)
 
