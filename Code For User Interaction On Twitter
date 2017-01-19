@@ -1,0 +1,46 @@
+import unicodedata
+import json
+import tweepy
+import os
+
+files = os.listdir("Usertweets_1")
+
+path = os.getcwd()
+i = 0
+
+p = open("refernces_1.txt","w")
+t_references = 0
+
+for f in files:
+	count = 0
+	file = path + "\Usertweets_1\\" + f
+	for line in open(file).readlines():
+		if("AT_USER" in line):
+			count = count + 1
+		
+	print f,count
+	t_references = t_references + count
+	p.write("Number of references in "+f+": "+str(count)+"\n")
+	
+p.write("Total number of references: "+str(t_references))
+
+files = os.listdir("Usertweets_2")
+
+path = os.getcwd()
+i = 0
+
+p = open("refernces_2.txt","w")
+t_references = 0
+
+for f in files:
+	count = 0
+	file = path + "\Usertweets_2\\" + f
+	for line in open(file).readlines():
+		if("AT_USER" in line):
+			count = count + 1
+		
+	print f,count
+	t_references = t_references + count
+	p.write("Number of references in "+f+": "+str(count)+"\n")
+	
+p.write("Total number of references: "+str(t_references))
