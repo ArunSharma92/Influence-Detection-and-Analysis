@@ -1,0 +1,105 @@
+import unicodedata
+import json
+import tweepy
+
+auth = tweepy.OAuthHandler('1DpXmbdT3n1gTMekQ0NzBUWhJ', 'ihfeWTdSV3YNjqymWwciuqS4bcwT6JdSVWG5wwS3dabKydnS6m')
+auth.set_access_token('4390387221-sPVsyBQhXkstTGyZKMnSJjUufMOTDIZ6qlmtV3Q', 'PsPlJFEPqOuQynQrlh1DZigwLwn45uFi9ddNmzSD8ih4C')
+
+api = tweepy.API(auth)
+
+l = ["@User_Name", "@User_Name1", "@User_Name2", "@User_Name3", "@User_Name4", "@User_Name5"]
+m = ["@User_Name6", "@User_Name7", "@User_Name8", "@User_Name9", "@User_Name10"]
+
+
+file = open('retweets_1.txt','w')
+t_retweets=0
+t_likes=0
+
+for u in l:
+	public_tweets = api.user_timeline(screen_name=u,count = 200) # query for collecting tweets based on screen_name of the user
+
+	get_user = api.get_user(screen_name=u)
+
+	i=0
+
+	file.write("User : @"+str(public_tweets[0].user.screen_name))
+	file.write("\n")
+	
+	nretweets = 0
+	nlikes = 0
+
+	for tweet in public_tweets:
+		
+		#print tweet.user.name
+		#print tweet.user.screen_name
+		#file.write(str(tweet.user.statuses_count))
+		#ile.write("\n")
+		i+=1
+		nlikes = nlikes + tweet.favorite_count
+		nretweets = nretweets + tweet.retweet_count
+						
+		
+	print public_tweets[0].user.screen_name
+	print "Number of retweets: "+str(nretweets)
+	print "Number of likes: "+str(nlikes)
+	
+	t_retweets = t_retweets + nretweets
+	t_likes = t_likes + nlikes
+	
+	file.write("Number of tweets collected: "+str(i))
+	file.write("\n")
+	file.write("Number of retweets: "+str(nretweets))
+	file.write("\n")
+	file.write("Number of likes: "+str(nlikes))
+	file.write("\n")
+	file.write("\n")
+
+file.write("Total number of retweets: "+str(t_retweets)+"\n")
+file.write("Total number of likes: "+str(t_likes))	
+file.close()
+
+file = open('retweets_2.txt','w')
+t_retweets=0
+t_likes=0
+
+for u in m:
+	public_tweets = api.user_timeline(screen_name=u,count = 200) # query for collecting tweets based on screen_name of the user
+
+	get_user = api.get_user(screen_name=u)
+
+	i=0
+
+	file.write("User : @"+str(public_tweets[0].user.screen_name))
+	file.write("\n")
+	
+	nretweets = 0
+	nlikes = 0
+
+	for tweet in public_tweets:
+		
+		#print tweet.user.name
+		#print tweet.user.screen_name
+		#file.write(str(tweet.user.statuses_count))
+		#ile.write("\n")
+		i+=1
+		nlikes = nlikes + tweet.favorite_count
+		nretweets = nretweets + tweet.retweet_count
+						
+	print public_tweets[0].user.screen_name
+	print "Number of retweets: "+str(nretweets)
+	print "Number of likes: "+str(nlikes)
+	
+	t_retweets = t_retweets + nretweets
+	t_likes = t_likes + nlikes
+	
+	file.write("Number of tweets collected: "+str(i))
+	file.write("\n")
+	file.write("Number of retweets: "+str(nretweets))
+	file.write("\n")
+	file.write("Number of likes: "+str(nlikes))
+	file.write("\n")
+	file.write("\n")
+
+file.write("Total number of retweets: "+str(t_retweets)+"\n")
+file.write("Total number of likes: "+str(t_likes))	
+file.close()
