@@ -1,0 +1,64 @@
+import unicodedata
+import json
+import tweepy
+#Collects tweets, calculates and displays likes, retweets, number of followers and following
+#I have changed the last five digits of the below Auth value input with "XXXXX", you can enter your own personal API values from the website to get it working. 
+auth = tweepy.OAuthHandler('1DpXmbdT3n1gTMekQ0NzXXXXX', 'ihfeWTdSV3YNjqymWwciuqS4bcwT6JdSVWG5wwS3dabKyXXXXX')
+auth.set_access_token('4390387221-sPVsyBQhXkstTGyZKMnSJjUufMOTDIZ6qlXXXXX', 'PsPlJFEPqOuQynQrlh1DZigwLwn45uFi9ddNmzSDXXXXX')
+
+api = tweepy.API(auth)
+
+public_tweets = api.user_timeline(screen_name="@Any_UserName",count = 200) # query for collecting tweets based on screen_name of the user
+
+get_user = api.get_user(screen_name="@Any_UserName")
+
+file = open('usertweets-sachin_rt_1.txt','w')
+
+i=0
+
+file.write(str(public_tweets[0].user.screen_name))
+file.write("\n")
+file.write("\n")
+
+for tweet in public_tweets:
+	print tweet.created_at
+	#print tweet.user.name
+	#print tweet.user.screen_name
+	#file.write(str(tweet.user.statuses_count))
+	#ile.write("\n")
+	i+=1
+	print "#", 
+	print i, 
+	print " : "
+	file.write("#")
+	file.write(str(i))
+	file.write("\n")
+	file.write(str(tweet.created_at))
+	file.write("\n")
+	ft = "Number of likes: "+str(tweet.favorite_count)
+	rt = "Number of retweets: "+str(tweet.retweet_count)
+	tweet = unicodedata.normalize('NFKD', tweet.text).encode('utf-8','ignore')
+	print tweet
+	print rt
+	print ft
+	file.write(json.dumps(tweet))
+	file.write("\n")
+	file.write(rt)
+	file.write("\n")
+	file.write(ft)
+	file.write("\n")
+	
+file.write("\n")
+file.write("\n")
+
+nfollowers = "Number of followers: "+str(get_user.followers_count)
+print nfollowers
+file.write(nfollowers)
+
+file.write("\n")
+
+nfollowing = "Number of following: "+str(get_user.friends_count)
+print nfollowing
+file.write(nfollowing)
+
+file.close()
